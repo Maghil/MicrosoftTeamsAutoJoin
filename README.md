@@ -1,11 +1,8 @@
-###Join meeting based on calendar
+# Join meeting based on calendar
 
-##REQUIREMENTS
+## REQUIREMENTS
 
-python3
-
-pip install yaml
-
-pip install selenium
-
-chromedriver
+- python3
+- pip install yaml
+- pip install selenium
+- chromedriver
