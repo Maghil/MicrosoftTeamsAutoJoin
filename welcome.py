@@ -15,8 +15,10 @@ if __name__ == "__main__":
     helper=auto.Driver(user["path"])  
     if(helper.signIn(user["email"],user["pwd"])):
         if(helper.joinMeeting()):
-            time.sleep(3600)
+            time.sleep(1200)
             helper.endMeeting()
+            #between class
+            time.sleep(960)
             helper.joinMeeting()
             time.sleep(3600)
             helper.endMeeting()            
