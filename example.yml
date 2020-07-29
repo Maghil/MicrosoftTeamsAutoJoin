@@ -1,2 +1,5 @@
 email : 2017pecit268@panimalarengg.onmicrosoft.com
-pwd : yourPassword
+pwd : Iamjust16
+
+#path of chrome driver
+path : C:\Program Files\chromedriver_win32\chromedriver.exe

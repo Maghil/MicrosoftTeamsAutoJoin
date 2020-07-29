@@ -1,5 +1,6 @@
 import auto
 import yaml
+import time
 
 def err():
     print("please message me the error you received")
@@ -11,10 +12,14 @@ def deserializer():
 
 if __name__ == "__main__":
     user = deserializer()
-    helper=auto.Driver("C:\Program Files\chromedriver_win32\chromedriver.exe")  
+    helper=auto.Driver(user["path"])  
     if(helper.signIn(user["email"],user["pwd"])):
         if(helper.joinMeeting()):
-            pass
+            time.sleep(3600)
+            helper.endMeeting()
+            helper.joinMeeting()
+            time.sleep(3600)
+            helper.endMeeting()            
         else:
             err()
 

@@ -70,9 +70,9 @@ class Driver:
             time.sleep(10)
 
             #scrolling time into view  #test tmrw to see if we have to scrooll
-            element = self.driver.find_element_by_xpath("//div[contains(text(), '12AM') or contains(text(), '12:00') ]")
-            actions = ActionChains(self.driver)
-            actions.move_to_element(element).perform()
+            # element = self.driver.find_element_by_xpath("//div[contains(text(), '12AM') or contains(text(), '12:00') ]")
+            # actions = ActionChains(self.driver)
+            # actions.move_to_element(element).perform()
 
             time.sleep(5)
             #clicking join
@@ -82,10 +82,14 @@ class Driver:
             #selecting audio off
             self.driver.find_element_by_xpath("//span[contains(text(), 'Audio off')]").click()
 
-            time.sleep(4)
-            self.driver.find_elements_by_class_name("app-svg icons-call-end").click()
+            
             return(True)
 
         except Exception as e :
             print(e)
             return(False)
+
+    def endMeeting(self):
+        self.wait_until_found("svg[class='app-svg icons-call-end']", 10)
+        # time.sleep(4)
+        # self.driver.find_element_by_class_name("").click()   
