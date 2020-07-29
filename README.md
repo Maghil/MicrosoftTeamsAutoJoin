@@ -3,13 +3,11 @@
 ### REQUIREMENTS
 
 - python3
-- pip install yaml
-- pip install selenium
-- chromedriver
+- pip install -r requirements.txt
 
 ### Steps 
-1.Download zip of the repo
+1.clone/download repo
 
-2.install all the requirements
+2.go to folder and pip install -r requirements.txt
 
 3.configure example.yml according to your needs
