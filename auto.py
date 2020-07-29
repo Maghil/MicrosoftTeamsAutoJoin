@@ -1,4 +1,5 @@
 import time
+
 from selenium import webdriver
 from selenium.common import exceptions
 from selenium.webdriver.common.by import By
@@ -6,16 +7,17 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.action_chains import ActionChains
+from webdriver_manager.chrome import ChromeDriverManager
 
 class Driver:
-    def __init__(self,path):
+    def __init__(self):
         chrome_options = webdriver.ChromeOptions()
         chrome_options.add_argument('--ignore-certificate-errors')
         chrome_options.add_argument('--ignore-ssl-errors')
         chrome_options.add_argument("--use-fake-ui-for-media-stream")
         chrome_options.add_experimental_option('excludeSwitches', ['enable-logging'])
-    
-        self.driver = webdriver.Chrome(path,chrome_options=chrome_options)
+
+        self.driver = webdriver.Chrome(ChromeDriverManager().install(), chrome_options=chrome_options)
         self.driver.get("https://login.microsoftonline.com/common/oauth2/authorize?response_type=id_token&client_id=5e3ce6c0-2b1f-4285-8d4b-75ee78787346&redirect_uri=https%3A%2F%2Fteams.microsoft.com%2Fpackage%2Fgo&state=fde2fa59-c3fc-463a-95b6-eaa16bbfc542&client-request-id=3b4a8dab-8203-46a6-909c-2176c5c6933b&x-client-SKU=Js&x-client-Ver=1.0.9&nonce=11ea4c65-414a-4f32-9a25-4abc901a14b5&domain_hint=&sso_reload=true")
 
     def wait_until_found(self,sel, timeout):
@@ -57,39 +59,34 @@ class Driver:
                 if use_web_instead is not None:
                     use_web_instead.click()
             return(True)
-
         except Exception as e:
             print(e)
             return(False)
 
     def joinMeeting(self):
         try:
-            time.sleep(5)
             #select calendar
-            self.driver.find_element_by_id("app-bar-ef56c0de-36fc-4ef8-b417-3d82ba9d073c").click()
+            self.wait_until_found("button[id='app-bar-ef56c0de-36fc-4ef8-b417-3d82ba9d073c']",10).click()
             time.sleep(10)
 
-            #scrolling time into view  #test tmrw to see if we have to scrooll
-            # element = self.driver.find_element_by_xpath("//div[contains(text(), '12AM') or contains(text(), '12:00') ]")
-            # actions = ActionChains(self.driver)
-            # actions.move_to_element(element).perform()
-
             time.sleep(5)
-            #clicking join
-            self.driver.find_element_by_xpath("//button[contains(text(), 'Join')]").click()
+            #clicking join on the recent meeting
+            el=self.driver.find_elements_by_xpath("//button[contains(text(), 'Join')]")
+            el[-1].click()
 
-            time.sleep(3)
+            time.sleep(3) 
             #selecting audio off
             self.driver.find_element_by_xpath("//span[contains(text(), 'Audio off')]").click()
-
-            
             return(True)
-
         except Exception as e :
             print(e)
             return(False)
 
     def endMeeting(self):
-        self.wait_until_found("svg[class='app-svg icons-call-end']", 10)
-        # time.sleep(4)
-        # self.driver.find_element_by_class_name("").click()   
+        try:
+            self.wait_until_found("svg[class='app-svg icons-call-end']", 10)  
+            return(True)
+
+        except Exception as e:
+            print(e)
+            return(False)
