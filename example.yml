@@ -1,9 +1,6 @@
 email : example@example.com
 pwd : yourPWD
 
-#path of chrome driver
-path : C:\Program Files\chromedriver_win32\chromedriver.exe 
-
 #enter the classes/meeting times below
 #IMPORTANT
 #TIME : HHMM (24h)
