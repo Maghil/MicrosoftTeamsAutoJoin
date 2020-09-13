@@ -6,7 +6,7 @@ def err():                                    #to print instruction if error ari
     print("please message me the error you received")
 
 def deserializer():                            #deserializes yml file
-    with open(r'example.yml') as file:
+    with open(r'welcome.yml') as file:
         user = yaml.full_load(file)
     return user
 
@@ -37,7 +37,8 @@ if __name__ == "__main__":
             a=i[1]
             start_time=a["startTime"]
             end_time=a["endTime"]
-
+            print(cur_time())
+            print(end_time)
             if(cur_time()>end_time):                #if the meeting end time lapsed no point joining
                 print("missed meeting")               
             
@@ -46,6 +47,8 @@ if __name__ == "__main__":
                 if helper.joinMeeting():            
                     if(wait_till(end_time)):        #waits for end time then ends meeting
                         helper.endMeeting()
+                    else:
+                        print("cant find end button")
                 else:
                     err()
     else:

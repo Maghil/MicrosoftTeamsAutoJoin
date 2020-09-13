@@ -18,7 +18,7 @@ class Driver:
         chrome_options.add_experimental_option('excludeSwitches', ['enable-logging'])
 
         self.driver = webdriver.Chrome(ChromeDriverManager().install(), chrome_options=chrome_options)
-        self.driver.get("https://login.microsoftonline.com/common/oauth2/authorize?response_type=id_token&client_id=5e3ce6c0-2b1f-4285-8d4b-75ee78787346&redirect_uri=https%3A%2F%2Fteams.microsoft.com%2Fpackage%2Fgo&state=fde2fa59-c3fc-463a-95b6-eaa16bbfc542&client-request-id=3b4a8dab-8203-46a6-909c-2176c5c6933b&x-client-SKU=Js&x-client-Ver=1.0.9&nonce=11ea4c65-414a-4f32-9a25-4abc901a14b5&domain_hint=&sso_reload=true")
+        self.driver.get("https://login.microsoftonline.com/common/oauth2/authorize?response_type=id_token&client_id=5e3ce6c0-2b1f-4285-8d4b-75ee78787346&redirect_uri=https%3A%2F%2Fteams.microsoft.com%2Fgo&state=f5a5fdce-c4ac-4d32-a953-22a007ba501d&client-request-id=b1ac9b9e-fb8f-40b4-87bb-4a478e7aecf1&x-client-SKU=Js&x-client-Ver=1.0.9&nonce=d2d19ff5-7899-4d44-9019-e3be429e7d6c&domain_hint=&sso_reload=true")
 
     def wait_until_found(self,sel, timeout):
         try:
